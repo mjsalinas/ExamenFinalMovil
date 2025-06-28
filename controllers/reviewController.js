@@ -1,6 +1,6 @@
 const supabase = require('../supabaseClient');
 
-// GET - obtener todas las reseñas
+// GET - obtener todas las reseñas Exanen
 exports.getAllReviews = async (req, res) => {
   const { data, error } = await supabase
     .from('reviews')

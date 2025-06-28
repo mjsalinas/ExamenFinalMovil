@@ -5,7 +5,7 @@ const {
     addReview,
     deleteReview
 } = require('../controllers/reviewController');
-
+//ExanenHectorSantos
 router.get('/', getAllReviews);
 router.post('/', addReview);
 router.delete('/:id', deleteReview);
