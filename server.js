@@ -6,7 +6,8 @@ const reviewRoutes = require('./routes/reviewRoutes');
 
 app.use(cors());
 app.use(express.json());
-app.use('/reviews', reviewRoutes);
+app.use('/api/reviews', reviewRoutes);
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
