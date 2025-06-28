@@ -1,32 +1,45 @@
-const supabase = require('../supabaseClient');
+const { createClient } = require("@supabase/supabase-js");
+
+// Crear cliente Supabase usando variables de entorno
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_ANON_KEY
+);
 
 // GET - obtener todas las reseñas
 exports.getAllReviews = async (req, res) => {
-  const { data, error } = await supabase
-    .from('reviews')
-    .select('*')
-    .order('created_at', { ascending: false });
+  const { data, error } = await supabase.from('reviews').select('*')
 
+  if (error) {
+    return res.status(500).json({ error: error.message });
+  }
+  res.status(200).json({ data });
 };
 
 // POST - crear nueva reseña
 exports.createReview = async (req, res) => {
   const { title, review, rating } = req.body;
+  const { data, error } = await supabase.from('reviews').insert([{ title, review, rating }]).select();
 
-  const { data, error } = await supabase
-    .from('reviews')
-    .insert([{ title, review, rating }])
-    .select();
-
+  if (error) {
+    return res.status(500).json({ error: error.message });
+  }
+  res.status(201).json({ data });
 };
 
 // DELETE - eliminar reseña por id
 exports.deleteReview = async (req, res) => {
   const { id } = req.params;
+  const { error } = await supabase.from('reviews').delete().eq('id', id);
 
-  const { error } = await supabase
-    .from('reviews')
-    .delete()
+  if (error) {
+    return res.status(500).json({ error: error.message });
+  }
+  res.status(204).send();
+};
 
-
+module.exports = {
+  getAllReviews,
+  createReview,
+  deleteReview
 };

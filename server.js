@@ -5,9 +5,14 @@ const reviewRoutes = require('./routes/reviewRoutes');
 
 app.use(cors());
 app.use(express.json());
-app.use('/reviews', reviewRoutes);
+
+
+app.use('/reviews', require('./routes/reviewRoutes'));
+app.use('/auth', require('./routes/authRoutes'));
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
+
