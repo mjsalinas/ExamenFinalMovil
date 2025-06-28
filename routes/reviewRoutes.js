@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const {
-    getAllReviews,
-    addReview,
-    deleteReview
-} = require('../controllers/reviewController');
+const reviewController = require('../controllers/reviewController');
 
-router.get('/', getAllReviews);
-router.post('/', addReview);
-router.delete('/:id', deleteReview);
+// GET todas las reseñas
+router.get('/', reviewController.getAllReviews);
+
+// POST nueva reseña
+router.post('/', reviewController.createReview);
+
+// DELETE reseña por id
+router.delete('/:id', reviewController.deleteReview);
 
 module.exports = router;
