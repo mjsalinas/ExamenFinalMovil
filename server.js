@@ -3,7 +3,7 @@ const cors = require('cors');
 const app = express();
 const reviewRoutes = require('./routes/reviewRoutes');
 //Examen Hector Santos
-//Hola Mundo
+
 app.use(cors());
 app.use(express.json());
 app.use('/reviews', reviewRoutes);
