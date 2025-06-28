@@ -27,6 +27,17 @@ exports.createReview = async (req, res) => {
   res.status(201).json({ data });
 };
 
+const updateReview = async (req, res) => {
+  const { id } = req.params;
+  const { title, review, rating } = req.body;
+  const { data, error } = await supabase.from("reviews").update({ title, review, rating }).eq("id", id);
+
+  if (error) {
+    return res.status(400).json({ error: error.message });
+  }
+  res.status(200).json({ data });
+};
+
 // DELETE - eliminar reseña por id
 exports.deleteReview = async (req, res) => {
   const { id } = req.params;
@@ -41,5 +52,6 @@ exports.deleteReview = async (req, res) => {
 module.exports = {
   getAllReviews,
   createReview,
+  updateReview,
   deleteReview
 };
