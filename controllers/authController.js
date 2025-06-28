@@ -1,5 +1,5 @@
 const { createClient } = require("@supabase/supabase-js");
-const { supabaseAdmin } = require("../supabaseClient");
+const { supabaseAdmin } = require("../supabaseClients");
 require("dotenv").config();
 
 const supabaseAnonClient= createClient(
