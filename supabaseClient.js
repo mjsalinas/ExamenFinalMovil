@@ -1,4 +1,4 @@
-
+//Examen
 const { createClient } = require('@supabase/supabase-js');
 
 
