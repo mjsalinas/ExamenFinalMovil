@@ -10,5 +10,8 @@ router.post('/', reviewController.createReview);
 
 // DELETE reseña por id
 router.delete('/:id', reviewController.deleteReview);
+// PUT actualizar reseña por id
+router.put('/:id', reviewController.updateReview);
+
 
 module.exports = router;

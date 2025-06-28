@@ -1,4 +1,3 @@
-// filepath: c:\Users\Oficial NOC\Desktop\DavidCerros_ExamenFinal\controllers\reviewController.js
 const supabase = require('../config/supabase');
 
 // GET - obtener todas las reseñas
@@ -38,8 +37,23 @@ const deleteReview = async (req, res) => {
   res.status(204).send();
 };
 
+// PUT - actualizar reseña por id
+const updateReview = async (req, res) => {
+  const { id } = req.params;
+  const { title, review, rating } = req.body;
+
+  const { data, error } = await supabase
+    .from('reviews')
+    .update({ title, review, rating })
+    .eq('id', id)
+    .select();
+
+  if (error) return res.status(500).json({ error: error.message });
+  res.json(data[0]);
+};
 module.exports = {
   getAllReviews,
   createReview,
-  deleteReview
+  deleteReview,
+  updateReview
 };
