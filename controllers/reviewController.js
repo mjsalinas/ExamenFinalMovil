@@ -37,6 +37,7 @@ const deleteReview = async (req, res) => {
   res.status(204).send();
 };
 
+// PUT - actualizar reseña por id
 const updateReview = async (req, res) => {
   const { id } = req.params;
   const { title, review, rating } = req.body;
@@ -54,9 +55,4 @@ const updateReview = async (req, res) => {
 
 
 
-module.exports = {
-  getAllReviews,
-  createReview,
-  deleteReview,
-  updateReview
-};
+module.exports = { getAllReviews, createReview, deleteReview, updateReview };
