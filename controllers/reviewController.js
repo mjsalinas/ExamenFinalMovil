@@ -7,6 +7,7 @@ exports.getAllReviews = async (req, res) => {
     .select('*')
     .order('created_at', { ascending: false });
 
+    
 };
 
 // POST - crear nueva reseña
