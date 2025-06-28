@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const reviewRoutes = require('./routes/reviewRoutes');
-
+//Examen Hector Santos
 app.use(cors());
 app.use(express.json());
 app.use('/reviews', reviewRoutes);
